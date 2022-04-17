@@ -16,3 +16,10 @@ class SensorDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sensor
         fields = ['id', 'name', 'description', 'measurements']
+
+
+class SensorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sensor
+        fields = ['id', 'name', 'description']
+
