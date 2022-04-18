@@ -1,17 +1,52 @@
 # TODO: опишите необходимые обработчики, рекомендуется использовать generics APIView классы:
 # TODO: ListCreateAPIView, RetrieveUpdateAPIView, CreateAPIView
 from rest_framework.response import Response
-# from rest_framework.generics import
-from rest_framework.decorators import api_view
-from .models import Sensor
-from .serializers import SensorSerializer
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
+from .models import Sensor, Measurement
+from .serializers import SensorDetailSerializer, MeasurementSerializer
 
 
-@api_view(['GET', 'POST'])
-def demo(request):
-    if request.method == 'GET':
-        sensors = Sensor.objects.all()
-        ser = SensorSerializer(sensors, many=True)
-        return Response(ser.data)
-    if request.method == 'POST':
-        return Response({'status': 'OK'})
+class SensorView(CreateAPIView, ListAPIView):                           # Вывод и создание сенсоров
+
+    serializer_class = SensorDetailSerializer
+
+    def get_queryset(self):
+        queryset = Sensor.objects.all()
+        return queryset
+
+    def sensor_create(self, serializer):
+        serializer.save()
+
+
+class UpdateSensor(RetrieveAPIView):                                   # Изменение сенсора
+    serializer_class = SensorDetailSerializer
+
+    def get_queryset(self):
+        queryset = Sensor.objects.all()
+        return queryset
+
+    def sensor_update(self, serializer):
+        serializer.save()
+
+
+class MeasurementView(CreateAPIView, ListAPIView):
+
+    serializer_class = MeasurementSerializer
+
+    def get_queryset(self):
+        queryset = Measurement.objects.all()
+        return queryset
+
+    def measurement_create(self, serializer):
+        serializer.save()
+
+
+class UpdateMeasurement(RetrieveAPIView):
+    serializer_class = MeasurementSerializer
+
+    def get_queryset(self):
+        queryset = Measurement.objects.all()
+        return queryset
+
+    def measurement_update(self, serializer):
+        serializer.save()
