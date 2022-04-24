@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-
+    'django_filters',
     'logistic',
 ]
 
@@ -71,6 +71,12 @@ TEMPLATES = [
     },
 ]
 
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': [
+#         'rest_framework.renderers.JSONRenderer',
+#     ]
+# }
+
 WSGI_APPLICATION = 'stocks_products.wsgi.application'
 
 
@@ -81,6 +87,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'netology_stocks_products',
+        'USER': 'postgres',
+        'PASSWORD': 'zxc',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
