@@ -2,35 +2,43 @@
 
 @baseUrl = http://localhost:8000/api/v1
 
+GET {{baseUrl}}/products
+Content-Type: application/json
+
+###
+
+GET {{baseUrl}}/stocks
+Content-Type: application/json
+
 # создание продукта
 POST {{baseUrl}}/products/
 Content-Type: application/json
 
 {
-  "title": "Помидор",
-  "description": "Лучшие помидоры на рынке"
+  "title": "Паста",
+  "description": "Вкусная"
 }
 
 ###
 
 # получение продуктов
-GET {{baseUrl}}/products/
+GET {{baseUrl}}/products/?limit=2&offset=3
 Content-Type: application/json
 
 ###
 
 # обновление продукта
-PATCH {{baseUrl}}/products/1/
+PATCH {{baseUrl}}/products/7/
 Content-Type: application/json
 
 {
-  "description": "Самые сочные и ароматные помидорки"
+  "description": "бурятский"
 }
 
 ###
 
 # удаление продукта
-DELETE {{baseUrl}}/products/1/
+DELETE {{baseUrl}}/stocks/2/  
 Content-Type: application/json
 
 ###
@@ -46,15 +54,15 @@ POST {{baseUrl}}/stocks/
 Content-Type: application/json
 
 {
-  "address": "мой адрес не дом и не улица, мой адрес сегодня такой: www.ленинград-спб.ru3",
+  "address": "мой адрес не дом и не улица, мой адрес сегодня такой: www.ленинград-спб.ru7",
   "positions": [
     {
-      "product": 2,
+      "product": 4,
       "quantity": 250,
       "price": 120.50
     },
     {
-      "product": 3,
+      "product": 7,
       "quantity": 100,
       "price": 180
     }
@@ -64,19 +72,19 @@ Content-Type: application/json
 ###
 
 # обновляем записи на складе
-PATCH {{baseUrl}}/stocks/4/
+PATCH {{baseUrl}}/stocks/2/
 Content-Type: application/json
 
 {
   "positions": [
     {
-      "product": 2,
-      "quantity": 100,
+      "product": 4,
+      "quantity": 10,
       "price": 130.80
     },
     {
-      "product": 3,
-      "quantity": 243,
+      "product": 7,
+      "quantity": 24,
       "price": 145
     }
   ]
@@ -85,5 +93,11 @@ Content-Type: application/json
 ###
 
 # поиск складов, где есть определенный продукт
-GET {{baseUrl}}/stocks/?products=2
+GET {{baseUrl}}/stocks/?products=7
+Content-Type: application/json
+
+###
+
+# вывод складов
+GET {{baseUrl}}/stocks/?limit=7&offset=0
 Content-Type: application/json
