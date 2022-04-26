@@ -1,0 +1,222 @@
+@baseUrl = http://localhost:8000/api/v1
+
+GET {{baseUrl}}/products
+Content-Type: application/json
+
+###
+
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+    "title": "Ноутбук",
+    "description": "прикольный",
+}
+
+###
+
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+    "title": "Notebook",
+    "description": "b",
+}
+
+###
+
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+    "title": "aoao",
+    "description": "3",
+}
+
+###
+
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+    "title": "oaoa",
+    "description": "4",
+}
+
+###
+
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+    "title": "lalala",
+    "description": "5",
+}
+
+###
+
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+    "title": "alalal",
+    "description": "6",
+}
+
+###
+
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+    "title": "zxc",
+    "description": "7",
+}
+
+###
+
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+    "title": "cxz",
+    "description": "8",
+}
+
+###
+
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+    "title": "vbn",
+    "description": "9",
+}
+
+###
+
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+    "title": "nbv",
+    "description": "10",
+}
+
+###
+
+
+GET {{baseUrl}}/products/1
+Content-Type: application/json
+
+###
+
+
+GET {{baseUrl}}/products/?limit=2&offset=3
+Content-Type: application/json
+
+###
+PATCH {{baseUrl}}/products/10
+Content-Type: application/json
+
+{
+    "title": "New laptop",
+    "description": "Asus ROG Strix G15 Advantage-edition"
+}
+
+PUT {{baseUrl}}/products/9
+Content-Type: application/json
+
+{
+    "title": "Lenovo Legion 5 Pro",
+    "description": "Probably the dest rtx 3070 laptop"
+}
+
+###
+
+GET {{baseUrl}}/products/?search=leno
+Content-Type: application/json
+
+###
+
+GET {{baseUrl}}/stocks
+Content-Type: application/json
+
+###
+
+POST {{baseUrl}}/stocks
+Content-Type: application/json
+
+{
+    "adress": "DNS",
+    "positions": [
+        {
+            "product": 10,
+            "quantity": 15,
+            "price": 169990.00
+        },
+        {
+            "product": 2,
+            "quantity": 13,
+            "price": 69990.00
+        },
+        {
+            "product": 4,
+            "quantity": 21,
+            "price": 81990.00
+        },
+        {
+            "product": 6,
+            "quantity": 11,
+            "price": 99990.00
+        },
+        {
+            "product": 8,
+            "quantity": 23,
+            "price": 63990.00
+        },
+    ]
+}
+
+###
+
+POST {{baseUrl}}/stocks
+Content-Type: application/json
+
+{
+    "adress": "Citilink",
+    "positions": [
+        {
+            "product": 9,
+            "quantity": 15,
+            "price": 179990.00
+        },
+        {
+            "product": 1,
+            "quantity": 13,
+            "price": 69990.00
+        },
+        {
+            "product": 3,
+            "quantity": 21,
+            "price": 81990.00
+        },
+        {
+            "product": 5,
+            "quantity": 11,
+            "price": 99990.00
+        },
+        {
+            "product": 7,
+            "quantity": 23,
+            "price": 63990.00
+        },
+    ]
+}
+
+###
+
+GET {{baseUrl}}/stocks/?limit=7&offset=0
+Content-Type: application/json
+
+###
