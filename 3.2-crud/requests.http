@@ -218,3 +218,19 @@ GET {{baseUrl}}/stocks/?positions=zxc
 Content-Type: application/json
 
 ###
+
+POST {{baseUrl}}/products/
+Content-Type: application/json 
+
+{
+    "title": "NT",
+    "description": "New post test",
+}
+
+###
+
+GET {{baseUrl}}/products/9
+Content-Type: application/json
+
+###
+

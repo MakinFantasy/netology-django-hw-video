@@ -1,3 +1,4 @@
+from turtle import pos
 from rest_framework import serializers
 from .models import Product, StockProduct, Stock
 
@@ -6,7 +7,7 @@ class ProductSerializer(serializers.ModelSerializer):
     # настройте сериализатор для продукта
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ['id', 'title', 'description']
 
 
 class ProductPositionSerializer(serializers.ModelSerializer):
@@ -22,7 +23,7 @@ class StockSerializer(serializers.ModelSerializer):
     # настройте сериализатор для склада
     class Meta:
         model = Stock
-        fields = '__all__'
+        fields = ['address', 'positions']
 
     def create(self, validated_data):
         # достаем связанные данные для других таблиц
@@ -35,12 +36,7 @@ class StockSerializer(serializers.ModelSerializer):
         # в нашем случае: таблицу StockProduct
         # с помощью списка positions
         for position in positions:
-            StockProduct.objects.update_or_create(
-                stock=stock,
-                product=position.get('product'),
-                quantity=position.get('quantity'),
-                price=position.get('price'),
-            )
+            stock.positions.create(**position)
 
         return stock
 
@@ -54,12 +50,10 @@ class StockSerializer(serializers.ModelSerializer):
         # здесь вам надо обновить связанные таблицы
         # в нашем случае: таблицу StockProduct
         # с помощью списка positions
-        stock_positions = StockProduct.objects.all().filter(stock_id=instance.id)
         for position in positions:
-            for stock_position in stock_positions:
-                if position['product'].id == stock_position.product_id:
-                    stock_position.quantity = position['quantity']
-                    stock_position.price = position['price']
-                    stock_position.save()
+            StockProduct.objects.update_or_create(
+                stock=stock, product=position['product'], defaults=position
+            )
 
+        
         return stock
